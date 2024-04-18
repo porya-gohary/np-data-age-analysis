@@ -1,0 +1,136 @@
+vertexset:
+  - TaskID: 0
+    VertexID: 0
+    Jitter: 200
+    BCET: 122
+    WCET: 1226
+    Period: 20000
+    Deadline: 20000
+    PE: 0
+    Successors: [9,6]
+  - TaskID: 1
+    VertexID: 1
+    Jitter: 200
+    BCET: 132
+    WCET: 1326
+    Period: 20000
+    Deadline: 20000
+    PE: 1
+    Successors: [6,11]
+  - TaskID: 2
+    VertexID: 2
+    Jitter: 300
+    BCET: 192
+    WCET: 1926
+    Period: 30000
+    Deadline: 30000
+    PE: 2
+    Successors: [3,12]
+  - TaskID: 3
+    VertexID: 3
+    Jitter: 500
+    BCET: 200
+    WCET: 2005
+    Period: 50000
+    Deadline: 50000
+    PE: 3
+    Successors: [4,8,10]
+  - TaskID: 4
+    VertexID: 4
+    Jitter: 700
+    BCET: 329
+    WCET: 3290
+    Period: 70000
+    Deadline: 70000
+    PE: 3
+    Successors: []
+  - TaskID: 5
+    VertexID: 5
+    Jitter: 700
+    BCET: 369
+    WCET: 3695
+    Period: 70000
+    Deadline: 70000
+    PE: 0
+    Successors: []
+  - TaskID: 6
+    VertexID: 6
+    Jitter: 700
+    BCET: 224
+    WCET: 2242
+    Period: 70000
+    Deadline: 70000
+    PE: 2
+    Successors: []
+  - TaskID: 7
+    VertexID: 7
+    Jitter: 800
+    BCET: 181
+    WCET: 1815
+    Period: 80000
+    Deadline: 80000
+    PE: 1
+    Successors: []
+  - TaskID: 8
+    VertexID: 8
+    Jitter: 800
+    BCET: 549
+    WCET: 5492
+    Period: 80000
+    Deadline: 80000
+    PE: 3
+    Successors: [7]
+  - TaskID: 9
+    VertexID: 9
+    Jitter: 800
+    BCET: 553
+    WCET: 5535
+    Period: 80000
+    Deadline: 80000
+    PE: 1
+    Successors: []
+  - TaskID: 10
+    VertexID: 10
+    Jitter: 1000
+    BCET: 691
+    WCET: 6919
+    Period: 100000
+    Deadline: 100000
+    PE: 2
+    Successors: [7,5]
+  - TaskID: 11
+    VertexID: 11
+    Jitter: 1200
+    BCET: 690
+    WCET: 6903
+    Period: 120000
+    Deadline: 120000
+    PE: 0
+    Successors: []
+  - TaskID: 12
+    VertexID: 12
+    Jitter: 1400
+    BCET: 966
+    WCET: 9669
+    Period: 140000
+    Deadline: 140000
+    PE: 3
+    Successors: []
+  - TaskID: 13
+    VertexID: 13
+    Jitter: 1500
+    BCET: 180
+    WCET: 1806
+    Period: 150000
+    Deadline: 150000
+    PE: 1
+    Successors: []
+  - TaskID: 14
+    VertexID: 14
+    Jitter: 1600
+    BCET: 1084
+    WCET: 10845
+    Period: 160000
+    Deadline: 160000
+    PE: 2
+    Successors: []
