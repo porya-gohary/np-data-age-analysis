@@ -44,13 +44,10 @@ namespace NP {
 	private:
 		Interval<Time> arrival;
 		Interval<Time> cost;
-		Interval<Time> recovery_cost{0, 0};
 		Time deadline;
 		Priority priority;
-		Priority recovery_priority;
 		JobID id;
 		unsigned int PE = 0;
-		bool recovery_block = false;
 		hash_value_t key;
 
 		void compute_hash() {
@@ -70,19 +67,9 @@ namespace NP {
 		Job(unsigned long id,
 			Interval<Time> arr, Interval<Time> cost,
 			Time dl, Priority prio,
-			unsigned long tid = 0)
-				: arrival(arr), cost(cost),
-				  deadline(dl), priority(prio), id(id, tid)
-		{
-			compute_hash();
-		}
-
-		Job(unsigned long id,
-			Interval<Time> arr, Interval<Time> cost, Interval<Time> rec_cost,
-			Time dl, Priority prio, Priority rec_prio,
 			unsigned long tid = 0, unsigned int pe = 0)
-				: arrival(arr), cost(cost), recovery_cost(rec_cost),
-				  deadline(dl), priority(prio), recovery_priority(rec_prio), id(id, tid), PE(pe)
+				: arrival(arr), cost(cost),
+				  deadline(dl), priority(prio), id(id, tid), PE(pe)
 		{
 			compute_hash();
 		}
@@ -127,31 +114,6 @@ namespace NP {
 			return cost;
 		}
 
-		bool recovery_block_status() const
-		{
-			return recovery_block;
-		}
-
-		void set_recovery_block_status(bool status)
-		{
-			recovery_block = status;
-		}
-
-		Time least_recovery_cost() const
-		{
-			return recovery_cost.from();
-		}
-
-		Time maximal_recovery_cost() const
-		{
-			return recovery_cost.upto();
-		}
-
-		const Interval<Time>& get_recovery_cost() const
-		{
-			return recovery_cost;
-		}
-
 		Priority get_priority() const
 		{
 			return priority;
@@ -160,16 +122,6 @@ namespace NP {
 		void set_priority(Priority prio)
 		{
 			priority = prio;
-		}
-
-		Priority get_recovery_priority() const
-		{
-			return recovery_priority;
-		}
-
-		void set_recovery_priority(Priority rec_prio)
-		{
-			recovery_priority = rec_prio;
 		}
 
 		Time get_deadline() const
@@ -209,9 +161,8 @@ namespace NP {
 			return this->id == search_id;
 		}
 
-		bool higher_priority_than(const Job &other, bool is_recovery_block = false, bool other_is_recovery_block = false) const
+		bool higher_priority_than(const Job &other) const
 		{
-			if (!is_recovery_block && !other_is_recovery_block)
 				return priority < other.priority
 					   // first tie-break by task ID
 					   || (priority == other.priority
@@ -220,33 +171,7 @@ namespace NP {
 					   || (priority == other.priority
 						   && id.task == other.id.task
 						   && id.job < other.id.job);
-			else if (is_recovery_block && !other_is_recovery_block)
-				return recovery_priority < other.priority
-					   // first tie-break by task ID
-					   || (recovery_priority == other.priority
-						   && id.task < other.id.task)
-					   // second, tie-break by job ID
-					   || (recovery_priority == other.priority
-						   && id.task == other.id.task
-						   && id.job < other.id.job);
-			else if (!is_recovery_block && other_is_recovery_block)
-				return priority < other.recovery_priority
-					   // first tie-break by task ID
-					   || (priority == other.recovery_priority
-						   && id.task < other.id.task)
-					   // second, tie-break by job ID
-					   || (priority == other.recovery_priority
-						   && id.task == other.id.task
-						   && id.job < other.id.job);
-			else
-				return recovery_priority < other.recovery_priority
-					   // first tie-break by task ID
-					   || (recovery_priority == other.recovery_priority
-						   && id.task < other.id.task)
-					   // second, tie-break by job ID
-					   || (recovery_priority == other.recovery_priority
-						   && id.task == other.id.task
-						   && id.job < other.id.job);
+
 		}
 
 		bool priority_at_least_that_of(const Job &other) const
@@ -280,7 +205,7 @@ namespace NP {
 		friend std::ostream& operator<< (std::ostream& stream, const Job& j)
 		{
 			stream << "Job{" << j.id.task << ", "  << j.id.job << ", " << j.arrival << ", "
-				   << j.cost << ", " << j.recovery_cost << ", " << j.deadline << ", " << j.priority << "}";
+				   << j.cost << ", " << j.deadline << ", " << j.priority << "}";
 			return stream;
 		}
 

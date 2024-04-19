@@ -4,8 +4,6 @@ vertexset:
     Jitter: 4000
     BCET: 262
     WCET: 2622
-    RecoveryCostMin: 262
-    RecoveryCostMax: 3000
     Period: 40000
     Deadline: 40000
     PE: 0

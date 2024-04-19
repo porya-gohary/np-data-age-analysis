@@ -16,8 +16,6 @@ namespace NP {
 		unsigned long taskID;
 		Time bcet = 0;
 		Time wcet = 0;
-		Time rec_cost_min = 0;
-		Time rec_cost_max = 0;
 		Time period = 0;
 		Interval<Time> jitter;
 		Time deadline = 0;
@@ -46,30 +44,12 @@ namespace NP {
 			this->name = "T" + std::to_string(taskID);
 		}
 
-		Task(unsigned long taskID, Time bcet, Time wcet, Time rec_cost_min, Time rec_cost_max, Time period,
-			 Time deadline, unsigned int PE) {
-			this->bcet = bcet;
-			this->wcet = wcet;
-			this->rec_cost_min = rec_cost_min;
-			this->rec_cost_max = rec_cost_max;
-			this->period = period;
-			this->jitter = Interval<Time>(0, 0);
-			this->deadline = deadline;
-			this->PE = PE;
-			this->taskID = taskID;
-			this->name = "T" + std::to_string(taskID);
-		}
-
 		//  Add a constructor for tasks with release jitter
 		Task(unsigned long taskID, Time bcet, Time wcet, Time period, Interval<Time> jitter, Time deadline, unsigned int PE)
 				: Task(taskID, bcet, wcet, period, deadline, PE) {
 			this->jitter = jitter;
 		}
 
-		Task(unsigned long taskID, Time bcet, Time wcet, Time rec_cost_min, Time rec_cost_max, Time period, Interval<Time> jitter, Time deadline, unsigned int PE)
-				: Task(taskID, bcet, wcet, rec_cost_min, rec_cost_max, period, deadline, PE) {
-			this->jitter = jitter;
-		}
 
 		// Encapsulation
 		void set_name(std::string name) {
@@ -115,18 +95,6 @@ namespace NP {
 
 		Time get_deadline() const {
 			return deadline;
-		}
-
-		Time get_rec_cost_min() const {
-			return rec_cost_min;
-		}
-
-		Time get_rec_cost_max() const {
-			return rec_cost_max;
-		}
-
-		Interval<Time> get_rec_cost() const {
-			return Interval<Time>(rec_cost_min, rec_cost_max);
 		}
 
 		unsigned int get_pe() const {
@@ -190,7 +158,6 @@ namespace NP {
 			out = "Task name: " + name + "\n";
 			out.append("\tBCET: " + std::to_string(bcet) + "\n");
 			out.append("\tWCET: " + std::to_string(wcet) + "\n");
-			out.append("\tRecovery Cost: I[" + std::to_string(rec_cost_min) + "," + std::to_string(rec_cost_max) + "]\n");
 			out.append("\tPeriod: " + std::to_string(period) + "\n");
 			out.append("\tJitter: I[" + std::to_string(jitter.from()) + "," + std::to_string(jitter.until()) + "]\n");
 			out.append("\tDeadline: " + std::to_string(deadline) + "\n");
