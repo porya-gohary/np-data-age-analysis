@@ -314,8 +314,12 @@ static void print_header() {
 int main(int argc, char **argv) {
 	auto parser = optparse::OptionParser();
 
-	parser.description("Exact NP Schedulability Tester");
-	parser.usage("usage: %prog [OPTIONS]... [JOB SET FILES]...");
+	parser.description("Data-age Analysis for Multi-rate Task chains");
+	parser.usage("usage: %prog [OPTIONS]... [DAG Task]...");
+
+	parser.add_option("-m", "--multiprocessor").dest("num_processors")
+			.help("set the number of processors of the platform")
+			.set_default("1");
 
 	parser.add_option("-t", "--time").dest("time_model")
 			.metavar("TIME-MODEL")
@@ -334,12 +338,9 @@ int main(int argc, char **argv) {
 			.action("store_const").set_const("1")
 			.help("use the naive exploration method (default: merging)");
 
-	parser.add_option("-m", "--multiprocessor").dest("num_processors")
-			.help("set the number of processors of the platform")
-			.set_default("1");
-
-	parser.add_option("-w", "--wcet").dest("worse_case").action("store_const").set_const("1").set_default("0")
-			.help("consider WCET as actual execution time for every job" "(default: off)");
+	parser.add_option("-w", "--wcet").dest("worse_case").set_default("0")
+			.action("store_const").set_const("1")
+			.help("use WCET as actual execution time and zero jitter for every job (default: off)");
 
 	parser.add_option("--header").dest("print_header")
 			.help("print a column header")
