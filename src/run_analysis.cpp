@@ -307,7 +307,6 @@ static void print_header() {
 			  << ", memory"
 			  << ", timeout"
 			  << ", #CPUs"
-			  << ", #recovery blocks"
 			  << std::endl;
 }
 
