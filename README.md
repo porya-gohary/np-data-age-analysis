@@ -114,7 +114,7 @@ To run the analysis for a partitioned system with four processing elements (PE):
 ```
 This will run the analysis for ([dag-task-3.prec.yaml](./examples/dag-task-3.prec.yaml)) with four cores, without timing uncertainty, EDF scheduling policy and partitioned scheduler.
 
-⚠️ Note: By using the portioned scheduler, the mapped PE for each task is read from the input file.
+⚠️ Note: By using the partitioned scheduler, the mapped PE for each task is read from the input file.
 
 
 ## 🗄️ Output Files
