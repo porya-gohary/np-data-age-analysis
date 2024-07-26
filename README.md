@@ -70,7 +70,7 @@ To compile the tool, first generate an appropriate `Makefile` with `cmake` and t
 ```
 
 ## 📄 Input Format
-The tool works with Yaml input files ([Example](./examples/dag-task-3.prec.yaml)). Each XML file contains the following information:
+The tool works with Yaml input files ([Example](./examples/dag-task-3.prec.yaml)). Each Yaml file contains the following information:
 - Task specification:
     * Task ID 
     * Vertex ID (could be same as Task ID)
