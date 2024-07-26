@@ -5,8 +5,8 @@
 <h4 align="center">An analysis framework for obtaining the bounds of task chains' data age in a multi-rate directed acyclic graph (DAG)</h4>
 
 <p align="center">
-  <a href="https://github.com/porya-gohary/Multi-rate-DAG-Framework/blob/master/LICENSE.md">
-    <img src="https://img.shields.io/hexpm/l/apa"
+  <a href="https://github.com/porya-gohary/np-data-age-analysis/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/License-BSD%203--Clause-blue.svg"
          alt="Gitter">
   </a>
     <img src="https://img.shields.io/badge/Made%20with-C++-orange">
@@ -112,7 +112,7 @@ To run the analysis for a partitioned system with four processing elements (PE):
 ```bash
 ./run_analysis ../examples/dag-task-3.prec.yaml -m 4 -w
 ```
-This will run the analysis for ([dag-task-3.prec.yaml](./examples/dag-task-3.prec.yaml)) with four cores, without timing uncertainty, EDF scheduling policy and partitioned scheduler.
+This will run the analysis for ([dag-task-3.prec.yaml](./examples/dag-task-3.prec.yaml)) with four cores, without timing uncertainty, EDF scheduling policy, and partitioned scheduler.
 
 ⚠️ Note: By using the partitioned scheduler, the mapped PE for each task is read from the input file.
 
@@ -124,6 +124,12 @@ The output is provided in two CSV format files and consists of the following:
 * Data-age bound of each task chain
 
 
+## 🌱 Contribution
+
+With your feedback and conversation, you can assist me in improving this framework.
+
+* Open pull request with improvements
+* Discuss feedback and bugs in issues
 
 
 ## 📜 License
@@ -131,4 +137,4 @@ Copyright © 2022 [Pourya Gohari](https://pourya-gohari.ir)
 
 Schedule-abstraction graph analysis adapted from [here](https://github.com/gnelissen/np-schedulability-analysis).
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the 3-clause BSD license - see the [LICENSE](LICENSE) file for details.
